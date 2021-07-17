@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const cors = require('cors');
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 const authRoute = require('./routes/auth');
@@ -8,7 +9,7 @@ const kidsNewsRoute = require('./routes/kidsNews');
 const programRoute = require('./routes/programs');
 const upComingProgramRoute = require('./routes/upcomingPrograms');
 const multer = require('multer');
-
+app.use(cors());
 app.use(express.json({limit: '50mb'}));
 app.use(express.urlencoded({limit: '50mb',extended:true}));
 dotenv.config();
