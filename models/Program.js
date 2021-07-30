@@ -4,7 +4,7 @@ const ProgramSchema = new mongoose.Schema({
     category: {
         type: String,
         required: true,
-        unique: true
+        unique: false,
     },
     link:{
         type: String,
