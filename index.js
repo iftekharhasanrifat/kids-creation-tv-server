@@ -9,11 +9,13 @@ const kidsNewsRoute = require('./routes/kidsNews');
 const programRoute = require('./routes/programs');
 const upComingProgramRoute = require('./routes/upcomingPrograms');
 const multer = require('multer');
+const path = require('path');
 app.use(cors());
 app.use(express.json({limit: '50mb'}));
 app.use(express.urlencoded({limit: '50mb',extended:true}));
 dotenv.config();
 app.use(express.json());
+app.use("/images",express.static(path.join(__dirname,"/images")));
 mongoose.connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -27,7 +29,7 @@ const storage = multer.diskStorage({
         cb(null, "images")
     },
     filename: (req, file, cb) => {
-        cb(null, "hello1.jpg");
+        cb(null,req.body.name);
     }
 })
 
